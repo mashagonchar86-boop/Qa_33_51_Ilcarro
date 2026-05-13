@@ -9,6 +9,7 @@ import java.time.Duration;
 public class ApplicationManager {
     WebDriver wd;
     HelperUser helperUser;
+    HelperCar helperCar;
 
     public void init(){
         wd = new ChromeDriver();
@@ -16,13 +17,22 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.navigate().to("https://ilcarro.web.app/login?url=%2Fsearch");
         helperUser = new HelperUser(wd);
-    }
-
-    public void stop(){
-        wd.quit();
+        helperCar = new HelperCar(wd);
     }
 
     public HelperUser getHelperUser() {
         return helperUser;
+    }
+
+    public HelperCar getHelperCar() {
+        return helperCar;
+    }
+
+
+
+
+
+    public void stop(){
+        wd.quit();
     }
 }

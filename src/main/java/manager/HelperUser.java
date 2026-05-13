@@ -83,7 +83,7 @@ public class HelperUser extends HelperBase {
     }
 
     public void fillRegistrationForm(User user) {
-        type(By.id("name"), user.getEmail());
+        type(By.id("name"), user.getName());
         type(By.id("lastName"), user.getLastName());
         type(By.id("email"), user.getEmail());
         type(By.id("password"), user.getPassword());
@@ -99,16 +99,17 @@ public class HelperUser extends HelperBase {
     }
 
     public void checkPolicyXY(){
-        WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
-        Rectangle rectangle = label.getRect();
-        int w = (int) rectangle.getWidth();
+        if(!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
+            Rectangle rectangle = label.getRect();
+            int w = (int) rectangle.getWidth();
 
-        //Dimension size = wd.manage().window().getSize();
-        int xOffset = -w/2;
-        Actions actions = new Actions(wd);
+            //Dimension size = wd.manage().window().getSize();
+            int xOffset = -w / 2;
+            Actions actions = new Actions(wd);
 
-        actions.moveToElement(label, xOffset, 0).click().release().perform();
-
+            actions.moveToElement(label, xOffset, 0).click().release().perform();
+        }
     }
 }
 
