@@ -1,11 +1,21 @@
 package tests;
 
 import models.Car;
+import models.User;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.Random;
 
 public class AddNewCarTests extends TestBase{
+
+    @BeforeClass
+    public void preCondition(){
+        if(app.getHelperUser().isLogged()){
+            app.getHelperUser().login(new User().setEmail("roma123@gmail.com").setPassword("m341339182P$"));
+        }
+    }
+
 
     @Test
     public void addNewCarSuccess(){
@@ -24,6 +34,7 @@ public class AddNewCarTests extends TestBase{
                 .build();
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
+        app.getHelperCar().attachPhoto("\"C:\\Users\\User\\Downloads\\Bugatti_Veyron_16.4_–_Frontansicht_(1),_5._April_2012,_Düsseldorf 2.jpg\"");
         app.getHelperCar().submitCarForm();
     }
 }

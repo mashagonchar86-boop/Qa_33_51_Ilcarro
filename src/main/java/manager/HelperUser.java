@@ -111,6 +111,14 @@ public class HelperUser extends HelperBase {
             actions.moveToElement(label, xOffset, 0).click().release().perform();
         }
     }
+
+
+    public void login(User m341339182P$) {
+        openLoginForm();
+        fillLoginForm("roma123@gmail.com", "m341339182P$");
+        submit();
+        clickOkButton();
+    }
 }
 
 
